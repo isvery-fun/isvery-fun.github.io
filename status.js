@@ -1,25 +1,40 @@
-const indicator = document.getElementById("status-indicator");
-const urlToCheck = "https://camper.isvery.fun"; // <- тут нужный URL
+function checkSiteStatus(url, timeout = 5000) {
+  return new Promise((resolve) => {
+    // Создаём таймаут, который отвергнет промис через timeout миллисекунд
+    const timer = setTimeout(() => {
+      resolve(false); // по таймауту считаем, что сайт недоступен
+    }, timeout);
 
-async function checkStatus() {
-  indicator.className = "status-checking"; // Жёлтый и мигает
+    fetch(url, { method: 'HEAD', mode: 'no-cors' })
+      .then(response => {
+        clearTimeout(timer);
+        // При режиме no-cors статус всегда 0, но fetch не падает, считаем доступным
+        // Если нужен более точный статус — mode: 'cors' и сервер должен разрешать CORS
+        resolve(true);
+      })
+      .catch(() => {
+        clearTimeout(timer);
+        resolve(false);
+      });
+  });
+}
 
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000); // 5 сек
-
-    const response = await fetch(urlToCheck, {
-      mode: "no-cors", // нужно для большинства сайтов
-      signal: controller.signal
-    });
-
-    clearTimeout(timeout);
-    indicator.className = "status-ok"; // Сайт работает
-
-  } catch (e) {
-    indicator.className = "status-error"; // Ошибка / не работает
+function setIndicatorColor(element, enable) {
+  element.classList.remove("status-ok", "status-error");
+  if (enable) {
+    element.classList.add("status-ok");
+  } else {
+    element.classList.add("status-error");
   }
 }
 
-checkStatus();
-setInterval(checkStatus, 15000); // Проверять каждые 15 секунд
+document.addEventListener('DOMContentLoaded', function() {
+  const camperInd = document.getElementById("camper-indicator");
+  const pansanggInd = document.getElementById("pansangg-indicator");
+
+  checkSiteStatus("https://camper.isvery.fun")
+    .then(result => setIndicatorColor(camperInd, result));
+
+  checkSiteStatus("https://pansangg.isvery.fun")
+    .then(result => setIndicatorColor(pansanggInd, result));
+});

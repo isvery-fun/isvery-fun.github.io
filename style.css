@@ -108,16 +108,19 @@ body {
     backdrop-filter: blur(5px);
     margin-top: 40px;
     width: 700px;
-    border: 5px solid #ddd;
     border-radius: 35px;
-    box-shadow: 0 0 15px #ddd;
+    border: 5px solid #fef400;
+    box-shadow: 0 0 15px #fef400;
 }
 
 .card-title {
     margin: 0;
-    color: #ddd;
-    font-size: 40px;
-    text-align: center;
+    text-align: left;
+    margin-left: 10px;
+    font-size: 50px;
+    color: #fef400;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .card-text {
@@ -148,30 +151,30 @@ body {
     color: #466e7a78;
 }
 
-#status-indicator {
+.status-indicator {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background-color: rgb(255, 196, 0);
+    background-color: #dd0;
     animation: pulse 1s infinite;
-    box-shadow: 0 0 6px yellow;
+    box-shadow: 0 0 6px #dd0;
     transition: background-color 0.3s, box-shadow 0.3s;
-  }
-  
-  @keyframes pulse {
+}
+
+@keyframes pulse {
     0% { opacity: 1; }
     50% { opacity: 0.4; }
     100% { opacity: 1; }
-  }
-  
-  .status-ok {
+}
+
+.status-ok {
     background-color: limegreen;
     box-shadow: 0 0 6px limegreen;
     animation: none;
-  }
-  
-  .status-error {
+}
+
+.status-error {
     background-color: red;
     box-shadow: 0 0 6px red;
     animation: none;
-  }
+}
