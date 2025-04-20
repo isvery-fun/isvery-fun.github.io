@@ -178,3 +178,8 @@ body {
     box-shadow: 0 0 6px red;
     animation: none;
 }
+.code {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #1e1e1e;
+}
