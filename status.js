@@ -1,26 +1,25 @@
-const services = [
-    { name: "camper.isvery.fun", url: "https://camper.isvery.fun", type: "http" }
-];
+const indicator = document.getElementById("status-indicator");
+const urlToCheck = "https://camper.isvery.fun"; // <- тут нужный URL
 
-async function checkHttp(url) {
-    try {
-        let response = await fetch(url, { method: 'GET', mode: 'no-cors' });
-        return response.ok;
-    } catch (e) {
-        return false;
-    }
+async function checkStatus() {
+  indicator.className = "status-checking"; // Жёлтый и мигает
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); // 5 сек
+
+    const response = await fetch(urlToCheck, {
+      mode: "no-cors", // нужно для большинства сайтов
+      signal: controller.signal
+    });
+
+    clearTimeout(timeout);
+    indicator.className = "status-ok"; // Сайт работает
+
+  } catch (e) {
+    indicator.className = "status-error"; // Ошибка / не работает
+  }
 }
 
-async function updateStatus() {
-    const isUp = await checkHttp(services[0].url);
-    const statusIndicator = document.getElementById("status-camper");
-
-    if (isUp) {
-        statusIndicator.className = "status-indicator up";
-    } else {
-        statusIndicator.className = "status-indicator down";
-    }
-}
-
-updateStatus();
-setInterval(updateStatus, 60000);
+checkStatus();
+setInterval(checkStatus, 15000); // Проверять каждые 15 секунд

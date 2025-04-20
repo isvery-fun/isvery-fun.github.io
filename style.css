@@ -123,25 +123,30 @@ body {
     text-align: left;
 }
 
-.status-container {
-    position: relative;
-    display: inline-block;
-   }
-  
-   .status-indicator {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
+#status-indicator {
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    border: 2px solid white;
-   }
+    background-color: yellow;
+    animation: pulse 1s infinite;
+    box-shadow: 0 0 6px yellow;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
   
-   .status-indicator.up {
-    background-color: green;
-   }
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
   
-   .status-indicator.down {
+  .status-ok {
+    background-color: limegreen;
+    box-shadow: 0 0 6px limegreen;
+    animation: none;
+  }
+  
+  .status-error {
     background-color: red;
-   }
+    box-shadow: 0 0 6px red;
+    animation: none;
+  }
