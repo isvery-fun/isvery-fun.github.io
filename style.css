@@ -183,3 +183,9 @@ body {
     padding: 10px;
     background-color: #1e1e1e;
 }
+
+.isveryfun {
+    width: 88px;
+    height: 31px;
+    image-rendering: pixelated;
+}
