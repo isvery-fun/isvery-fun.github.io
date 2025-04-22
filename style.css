@@ -189,3 +189,7 @@ body {
     height: 31px;
     image-rendering: pixelated;
 }
+
+.nclink {
+    color: inherit;
+}
