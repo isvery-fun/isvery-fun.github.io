@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+
+        <title>isvery.fun</title>
+    </head>
+    <body>
+        <a href="index.html"><button class="top-title"><img src="assets/site_logo.png" alt="Site logo" width="60px">isvery.fun</button></a>
+        <div class="navbar">
+            <a href="catalog"><button>catalog</button></a>
+            <a href=".."><button>about</button></a>
+            <a href="subdomain"><button class="current">subdomain</button></a>
+        </div>
+        <div class="modal alias">
+            <p>
+                <h1>how to make an alias?</h1>
+                how to make an alias?<br><br>
+
+                if you want your isvery.fun subdomain to be an alias (when you visit site through the subdomain, it shows the page content instead of redirecting to your IP or domain), you need to follow these steps (instructions for cloudflare):<br><br>
+
+                1. go to the DNS section of the domain management<br><br>
+
+                2. add a new DNS record of the CNAME type:<br><br>
+                    - in the name field, specify your isvery.fun subdomain<br>
+                    - in the target field, specify your main IP or domain<br>
+                    - in the proxy status toggle, set the value that you specified in the form (please)<br><br>
+
+                3. save the record. updating DNS takes a few minutes, but it can take longer.
+            </p>
+        </div>
+    </body>
+</html>
