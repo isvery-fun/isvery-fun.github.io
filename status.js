@@ -31,10 +31,14 @@ function setIndicatorColor(element, enable) {
 document.addEventListener('DOMContentLoaded', function() {
   const camperInd = document.getElementById("camper-indicator");
   const pansanggInd = document.getElementById("pansangg-indicator");
+  const meexInd = document.getElementById("meex-indicator");
 
   checkSiteStatus("https://camper.isvery.fun")
     .then(result => setIndicatorColor(camperInd, result));
 
   checkSiteStatus("https://pansangg.isvery.fun")
     .then(result => setIndicatorColor(pansanggInd, result));
+
+  checkSiteStatus("https://meex.isvery.fun")
+    .then(result => setIndicatorColor(meexInd, result));
 });
